@@ -110,8 +110,6 @@ class Program:
         return optionHeatOutput
 
     def convert(heatInput: int, heatOutput: int, heat: float):
-        print(heatInput, heatOutput, heat)
-
         if heatInput == 1:
             if heatOutput == 1:
                 result = Heat.Celsius.fahrenheit(heat)
