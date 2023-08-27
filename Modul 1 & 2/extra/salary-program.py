@@ -22,13 +22,18 @@ class Program:
                 Utility.printFormat("Salary Calculator")
 
                 salaryPerHour = float(input("Salary Per Hour ($): "))
-                daysOfWorkPerWeek = int(input("Days Of Work Per Week: "))
+                daysOfWorkPerWeek = int(input("Days Of Work Per Week (1-7): "))
                 if not (1 <= daysOfWorkPerWeek <= 7):
                     raise Exception()
 
+                salaryPerWeek = salaryPerHour * 8 * daysOfWorkPerWeek
+
                 Utility.printFormat()
                 print(
-                    f"Total Weekly Salary ({str(daysOfWorkPerWeek) + ' Day' if daysOfWorkPerWeek == 1 else str(daysOfWorkPerWeek) + ' Days'}): ${salaryPerHour * 8 * daysOfWorkPerWeek}"
+                    f"Total Weekly Salary ({str(daysOfWorkPerWeek) + ' Day' if daysOfWorkPerWeek == 1 else str(daysOfWorkPerWeek) + ' Days'}): ${salaryPerWeek}"
+                )
+                print(
+                    f"Total Montly Salary ({str(daysOfWorkPerWeek * 4) + ' Days'}): ${salaryPerWeek * 4}"
                 )
                 Utility.printFormat()
 
