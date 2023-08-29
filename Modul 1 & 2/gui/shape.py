@@ -8,6 +8,8 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
+        self.shapeChoice = {"2D": "Square", "3D": "Cube"}
+
         self.title("Shape Calculator")
         self.geometry(f"{400}x{600}")
 
@@ -25,6 +27,7 @@ class App(customtkinter.CTk):
 
         self.shapeOption = customtkinter.CTkOptionMenu(
             self.mainFrame,
+            command=self.shapeOptionEvent,
             values=["Square", "Rectangle", "Triangle", "Circle"],
             font=customtkinter.CTkFont(size=14, weight="bold"),
         )
@@ -110,7 +113,7 @@ class App(customtkinter.CTk):
             self.shapeOption.configure(
                 values=["Square", "Rectangle", "Triangle", "Circle"]
             )
-            self.shapeOption.set("Square")
+            self.shapeOption.set(self.shapeChoice["2D"])
 
             self.show2D()
             self.shapeDimension = 2
@@ -125,7 +128,7 @@ class App(customtkinter.CTk):
                     "Cylinder",
                 ]
             )
-            self.shapeOption.set("Cube")
+            self.shapeOption.set(self.shapeChoice["3D"])
 
             self.show3D()
             self.shapeDimension = 3
@@ -151,6 +154,13 @@ class App(customtkinter.CTk):
         self.volumeEntry.pack(padx=10, fill="both")
         self.surfaceAreaLabel.pack(pady=(10, 0), padx=10, fill="both")
         self.surfaceAreaEntry.pack(padx=10, fill="both")
+
+    def shapeOptionEvent(self, value):
+        if self.shapeDimension == 2:
+            self.shapeChoice["2D"] = value
+
+        else:
+            self.shapeChoice["3D"] = value
 
 
 if __name__ == "__main__":
