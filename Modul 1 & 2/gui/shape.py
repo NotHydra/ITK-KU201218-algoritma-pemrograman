@@ -8,8 +8,6 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        self.shapeDimension = 2
-
         self.title("Shape Calculator")
         self.geometry(f"{400}x{600}")
 
@@ -18,7 +16,7 @@ class App(customtkinter.CTk):
 
         self.dimensionSegmented = customtkinter.CTkSegmentedButton(
             self.mainFrame,
-            command=self.dimensionSegmentedEvent,
+            command=self.switchShapeDimension,
             values=["2D", "3D"],
             font=customtkinter.CTkFont(size=14, weight="bold"),
         )
@@ -47,7 +45,7 @@ class App(customtkinter.CTk):
 
         self.component2D()
         self.component3D()
-        self.switchShapeDimension()
+        self.defaultShapeDimension()
 
     def component2D(self):
         self.areaEntryText = customtkinter.StringVar()
@@ -103,14 +101,34 @@ class App(customtkinter.CTk):
             state="disabled",
         )
 
-    def switchShapeDimension(self):
-        if self.shapeDimension == 2:
+    def defaultShapeDimension(self):
+        self.shapeDimension = 2
+        self.show2D()
+
+    def switchShapeDimension(self, value):
+        if value == "2D":
+            self.shapeOption.configure(
+                values=["Square", "Rectangle", "Triangle", "Circle"]
+            )
+            self.shapeOption.set("Square")
+
             self.show2D()
-            self.shapeDimension = 3
+            self.shapeDimension = 2
 
         else:
+            self.shapeOption.configure(
+                values=[
+                    "Cube",
+                    "Cuboid",
+                    "Pyramid",
+                    "Sphere",
+                    "Cylinder",
+                ]
+            )
+            self.shapeOption.set("Cube")
+
             self.show3D()
-            self.shapeDimension = 2
+            self.shapeDimension = 3
 
     def show2D(self):
         self.volumeLabel.pack_forget()
@@ -133,29 +151,6 @@ class App(customtkinter.CTk):
         self.volumeEntry.pack(padx=10, fill="both")
         self.surfaceAreaLabel.pack(pady=(10, 0), padx=10, fill="both")
         self.surfaceAreaEntry.pack(padx=10, fill="both")
-
-    def dimensionSegmentedEvent(self, value):
-        if value == "2D":
-            self.shapeOption.configure(
-                values=["Square", "Rectangle", "Triangle", "Circle"]
-            )
-            self.shapeOption.set("Square")
-
-            self.show2D()
-
-        else:
-            self.shapeOption.configure(
-                values=[
-                    "Cube",
-                    "Cuboid",
-                    "Pyramid",
-                    "Sphere",
-                    "Cylinder",
-                ]
-            )
-            self.shapeOption.set("Cube")
-
-            self.show3D()
 
 
 if __name__ == "__main__":
