@@ -47,7 +47,7 @@ class App(customtkinter.CTk):
 
         self.component2D()
         self.component3D()
-        self.swithShapeDimension()
+        self.switchShapeDimension()
 
     def component2D(self):
         self.areaEntryText = customtkinter.StringVar()
@@ -103,7 +103,7 @@ class App(customtkinter.CTk):
             state="disabled",
         )
 
-    def swithShapeDimension(self):
+    def switchShapeDimension(self):
         if self.shapeDimension == 2:
             self.show2D()
             self.shapeDimension = 3
