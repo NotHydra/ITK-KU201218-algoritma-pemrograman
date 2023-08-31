@@ -1,5 +1,7 @@
 import customtkinter
 
+from math import pi, sqrt
+
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
@@ -26,6 +28,23 @@ class Shape:
             height = float(input("Height: "))
 
             return 2 * (length * width + length * height + width * height)
+
+    class Cone:
+        def volume() -> float:
+            return (
+                (1 / 3)
+                * pi
+                * (float(input("Radius: ")) ** 2)
+                * float(input("Height: "))
+            )
+
+        def surfaceArea() -> float:
+            radius = float(input("Radius: "))
+            return (
+                pi
+                * radius
+                * (radius + (sqrt(radius**2 + float(input("Height: ")) ** 2)))
+            )
 
 
 class App(customtkinter.CTk):
