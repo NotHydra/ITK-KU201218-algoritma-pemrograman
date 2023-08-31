@@ -7,59 +7,60 @@ customtkinter.set_default_color_theme("dark-blue")
 
 
 class Shape:
-    class Cube:
-        def volume() -> float:
-            return float(input("Length: ")) ** 3
+    class Three:
+        class Cube:
+            def volume() -> float:
+                return float(input("Length: ")) ** 3
 
-        def surfaceArea() -> float:
-            return 6 * (float(input("Length: ")) ** 2)
+            def surfaceArea() -> float:
+                return 6 * (float(input("Length: ")) ** 2)
 
-    class Cuboid:
-        def volume() -> float:
-            return (
-                float(input("Length: "))
-                * float(input("Width: "))
-                * float(input("Height: "))
-            )
+        class Cuboid:
+            def volume() -> float:
+                return (
+                    float(input("Length: "))
+                    * float(input("Width: "))
+                    * float(input("Height: "))
+                )
 
-        def surfaceArea() -> float:
-            length = float(input("Length: "))
-            width = float(input("Width: "))
-            height = float(input("Height: "))
+            def surfaceArea() -> float:
+                length = float(input("Length: "))
+                width = float(input("Width: "))
+                height = float(input("Height: "))
 
-            return 2 * (length * width + length * height + width * height)
+                return 2 * (length * width + length * height + width * height)
 
-    class Cone:
-        def volume() -> float:
-            return (
-                (1 / 3)
-                * pi
-                * (float(input("Radius: ")) ** 2)
-                * float(input("Height: "))
-            )
+        class Cone:
+            def volume() -> float:
+                return (
+                    (1 / 3)
+                    * pi
+                    * (float(input("Radius: ")) ** 2)
+                    * float(input("Height: "))
+                )
 
-        def surfaceArea() -> float:
-            radius = float(input("Radius: "))
-            return (
-                pi
-                * radius
-                * (radius + (sqrt(radius**2 + float(input("Height: ")) ** 2)))
-            )
+            def surfaceArea() -> float:
+                radius = float(input("Radius: "))
+                return (
+                    pi
+                    * radius
+                    * (radius + (sqrt(radius**2 + float(input("Height: ")) ** 2)))
+                )
 
-    class Sphere:
-        def volume() -> float:
-            return (4 / 3) * pi * (float(input("Radius: ")) ** 3)
+        class Sphere:
+            def volume() -> float:
+                return (4 / 3) * pi * (float(input("Radius: ")) ** 3)
 
-        def surfaceArea() -> float:
-            return 4 * pi * (float(input("Radius: ")) ** 2)
+            def surfaceArea() -> float:
+                return 4 * pi * (float(input("Radius: ")) ** 2)
 
-    class Cylinder:
-        def volume() -> float:
-            return pi * (float(input("Radius: ")) ** 2) * float(input("Height: "))
+        class Cylinder:
+            def volume() -> float:
+                return pi * (float(input("Radius: ")) ** 2) * float(input("Height: "))
 
-        def surfaceArea() -> float:
-            radius = float(input("Radius: "))
-            return 2 * pi * radius * (radius + float(input("Height: ")))
+            def surfaceArea() -> float:
+                radius = float(input("Radius: "))
+                return 2 * pi * radius * (radius + float(input("Height: ")))
 
 
 class App(customtkinter.CTk):
