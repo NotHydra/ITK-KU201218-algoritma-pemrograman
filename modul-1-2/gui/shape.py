@@ -12,6 +12,21 @@ class Shape:
         def surfaceArea() -> float:
             return 6 * (float(input("Length: ")) ** 2)
 
+    class Cuboid:
+        def volume() -> float:
+            return (
+                float(input("Length: "))
+                * float(input("Width: "))
+                * float(input("Height: "))
+            )
+
+        def surfaceArea() -> float:
+            length = float(input("Length: "))
+            width = float(input("Width: "))
+            height = float(input("Height: "))
+
+            return 2 * (length * width + length * height + width * height)
+
 
 class App(customtkinter.CTk):
     def __init__(self):
