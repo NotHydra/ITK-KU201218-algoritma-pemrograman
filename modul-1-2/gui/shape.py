@@ -46,6 +46,13 @@ class Shape:
                 * (radius + (sqrt(radius**2 + float(input("Height: ")) ** 2)))
             )
 
+    class Sphere:
+        def volume() -> float:
+            return (4 / 3) * pi * (float(input("Radius: ")) ** 3)
+
+        def surfaceArea() -> float:
+            return 4 * pi * (float(input("Radius: ")) ** 2)
+
 
 class App(customtkinter.CTk):
     def __init__(self):
