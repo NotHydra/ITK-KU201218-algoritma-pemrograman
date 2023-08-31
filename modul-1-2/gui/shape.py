@@ -7,6 +7,14 @@ customtkinter.set_default_color_theme("dark-blue")
 
 
 class Shape:
+    class Two:
+        class Square:
+            def area(length) -> float:
+                return length**2
+
+            def perimeter(length) -> float:
+                return length * 4
+
     class Three:
         class Cube:
             def volume() -> float:
