@@ -53,6 +53,14 @@ class Shape:
         def surfaceArea() -> float:
             return 4 * pi * (float(input("Radius: ")) ** 2)
 
+    class Cylinder:
+        def volume() -> float:
+            return pi * (float(input("Radius: ")) ** 2) * float(input("Height: "))
+
+        def surfaceArea() -> float:
+            radius = float(input("Radius: "))
+            return 2 * pi * radius * (radius + float(input("Height: ")))
+
 
 class App(customtkinter.CTk):
     def __init__(self):
