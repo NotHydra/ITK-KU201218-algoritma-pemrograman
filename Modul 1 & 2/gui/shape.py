@@ -12,6 +12,7 @@ class App(customtkinter.CTk):
 
         self.title("Shape Calculator")
         self.geometry(f"{400}x{600}")
+        self.resizable(width=False, height=False)
 
         self.mainFrame = customtkinter.CTkFrame(self)
         self.mainFrame.pack(pady=20, padx=20, fill="both", expand=True)
