@@ -4,6 +4,15 @@ customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 
+class Shape:
+    class Cube:
+        def volume() -> float:
+            return float(input("Length: ")) ** 3
+
+        def surfaceArea() -> float:
+            return 6 * (float(input("Length: ")) ** 2)
+
+
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -124,7 +133,7 @@ class App(customtkinter.CTk):
                 values=[
                     "Cube",
                     "Cuboid",
-                    "Pyramid",
+                    "Cone",
                     "Sphere",
                     "Cylinder",
                 ]
