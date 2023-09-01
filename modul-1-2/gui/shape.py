@@ -2,9 +2,6 @@ import customtkinter
 
 from math import pi, sqrt
 
-customtkinter.set_appearance_mode("dark")
-customtkinter.set_default_color_theme("dark-blue")
-
 
 class Shape:
     class Two:
@@ -75,14 +72,46 @@ class Shape:
                 return 2 * pi * radius * (radius + height)
 
 
+class Depedency:
+    ctkAppearance = "dark"
+    ctkColorTheme = "dark-blue"
+
+    resolution = {"width": 400, "height": 600}
+
+    shapes = {
+        "2D": [
+            {"id": 1, "name": "Square", "formula": Shape.Two.Square},
+            {"id": 2, "name": "Rectangle", "formula": Shape.Two.Rectangle},
+            {"id": 3, "name": "Triangle", "formula": Shape.Two.Triangle},
+            {"id": 4, "name": "Circle", "formula": Shape.Two.Circle},
+        ],
+        "3D": [
+            {"id": 1, "name": "Cube", "formula": Shape.Three.Cube},
+            {"id": 2, "name": "Cuboid", "formula": Shape.Three.Cuboid},
+            {"id": 3, "name": "Cone", "formula": Shape.Three.Cone},
+            {"id": 4, "name": "Sphere", "formula": Shape.Three.Sphere},
+            {"id": 5, "name": "Cylinder", "formula": Shape.Three.Cylinder},
+        ],
+    }
+
+
+customtkinter.set_appearance_mode(Depedency.ctkAppearance)
+customtkinter.set_default_color_theme(Depedency.ctkColorTheme)
+
+
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        self.shapeChoice = {"2D": "Square", "3D": "Cube"}
+        self.shapeChoice = {
+            "2D": Depedency.shapes["2D"][0]["name"],
+            "3D": Depedency.shapes["3D"][0]["name"],
+        }
 
         self.title("Shape Calculator")
-        self.geometry(f"{400}x{600}")
+        self.geometry(
+            f"{Depedency.resolution['width']}x{Depedency.resolution['height']}"
+        )
         self.resizable(width=False, height=False)
 
         self.mainFrame = customtkinter.CTkFrame(self)
@@ -90,7 +119,7 @@ class App(customtkinter.CTk):
 
         self.dimensionSegmented = customtkinter.CTkSegmentedButton(
             self.mainFrame,
-            command=self.switchShapeDimension,
+            command=self.dimensionSegmentedEvent,
             values=["2D", "3D"],
             font=customtkinter.CTkFont(size=14, weight="bold"),
         )
@@ -100,10 +129,10 @@ class App(customtkinter.CTk):
         self.shapeOption = customtkinter.CTkOptionMenu(
             self.mainFrame,
             command=self.shapeOptionEvent,
-            values=["Square", "Rectangle", "Triangle", "Circle"],
+            values=[shape["name"] for shape in Depedency.shapes["2D"]],
             font=customtkinter.CTkFont(size=14, weight="bold"),
         )
-        self.shapeOption.set("Square")
+        self.shapeOption.set(Depedency.shapes["2D"][0]["name"])
         self.shapeOption.pack(pady=10, padx=10, fill="both")
 
         self.lengthLabel = customtkinter.CTkLabel(
@@ -176,35 +205,6 @@ class App(customtkinter.CTk):
             state="disabled",
         )
 
-    def defaultShapeDimension(self):
-        self.shapeDimension = 2
-        self.show2D()
-
-    def switchShapeDimension(self, value):
-        if value == "2D":
-            self.shapeOption.configure(
-                values=["Square", "Rectangle", "Triangle", "Circle"]
-            )
-            self.shapeOption.set(self.shapeChoice["2D"])
-
-            self.show2D()
-            self.shapeDimension = 2
-
-        else:
-            self.shapeOption.configure(
-                values=[
-                    "Cube",
-                    "Cuboid",
-                    "Cone",
-                    "Sphere",
-                    "Cylinder",
-                ]
-            )
-            self.shapeOption.set(self.shapeChoice["3D"])
-
-            self.show3D()
-            self.shapeDimension = 3
-
     def show2D(self):
         self.volumeLabel.pack_forget()
         self.volumeEntry.pack_forget()
@@ -226,6 +226,29 @@ class App(customtkinter.CTk):
         self.volumeEntry.pack(padx=10, fill="both")
         self.surfaceAreaLabel.pack(pady=(10, 0), padx=10, fill="both")
         self.surfaceAreaEntry.pack(padx=10, fill="both")
+
+    def defaultShapeDimension(self):
+        self.shapeDimension = 2
+        self.show2D()
+
+    def dimensionSegmentedEvent(self, value):
+        if value == "2D":
+            self.shapeOption.configure(
+                values=[shape["name"] for shape in Depedency.shapes["2D"]]
+            )
+            self.shapeOption.set(self.shapeChoice["2D"])
+
+            self.show2D()
+            self.shapeDimension = 2
+
+        else:
+            self.shapeOption.configure(
+                values=[shape["name"] for shape in Depedency.shapes["3D"]]
+            )
+            self.shapeOption.set(self.shapeChoice["3D"])
+
+            self.show3D()
+            self.shapeDimension = 3
 
     def shapeOptionEvent(self, value):
         if self.shapeDimension == 2:
