@@ -72,6 +72,20 @@ class Shape:
                 return 2 * pi * radius * (radius + height)
 
 
+class Utility:
+    def isFloat(value):
+        try:
+            float(value)
+
+            return True
+        except ValueError:
+            return False
+
+    def removeTrailingZero(value):
+        text = "{:f}".format(value)
+        return text.rstrip("0").rstrip(".") if "." in text else text
+
+
 class Depedency:
     ctkAppearance = "dark"
     ctkColorTheme = "dark-blue"
@@ -282,7 +296,6 @@ class App(customtkinter.CTk):
             },
             {"id": 8, "name": "radius", "display": "Radius", "placeholder": "radius"},
         ]
-        self.shapeEntryArray = []
 
         self.title("Shape Calculator")
         self.geometry(
@@ -312,6 +325,14 @@ class App(customtkinter.CTk):
         self.shapeOption.pack(pady=(10, 5), padx=10, fill="both")
 
         self.componentParameter()
+
+        self.calculateButton = customtkinter.CTkButton(
+            self.mainFrame,
+            text="Calculate",
+            font=customtkinter.CTkFont(size=14, weight="bold"),
+            command=self.calculate,
+        )
+
         self.component2D()
         self.component3D()
 
@@ -415,15 +436,15 @@ class App(customtkinter.CTk):
         self.surfaceAreaEntry.pack_forget()
 
     def show2D(self):
-        self.areaLabel.pack(pady=(20, 0), padx=10, fill="both")
+        self.areaLabel.pack(pady=(5, 0), padx=10, fill="both")
         self.areaEntry.pack(padx=10, fill="both")
-        self.perimeterLabel.pack(pady=(10, 0), padx=10, fill="both")
+        self.perimeterLabel.pack(padx=10, fill="both")
         self.perimeterEntry.pack(padx=10, fill="both")
 
     def show3D(self):
-        self.volumeLabel.pack(pady=(20, 0), padx=10, fill="both")
+        self.volumeLabel.pack(pady=(5, 0), padx=10, fill="both")
         self.volumeEntry.pack(padx=10, fill="both")
-        self.surfaceAreaLabel.pack(pady=(10, 0), padx=10, fill="both")
+        self.surfaceAreaLabel.pack(padx=10, fill="both")
         self.surfaceAreaEntry.pack(padx=10, fill="both")
 
     def refreshDimension(self, value):
@@ -440,7 +461,7 @@ class App(customtkinter.CTk):
         self.hide2D()
         self.hide3D()
         self.hideParameter()
-        self.shapeEntryArray.clear()
+        self.calculateButton.pack_forget()
 
         if value != None:
             self.shapeChoiceObject[self.shapeDimension] = value
@@ -455,17 +476,48 @@ class App(customtkinter.CTk):
 
                         self.shapeParameterComponentObject[
                             shapeFormulaInputObject["name"]
-                        ]["entry"].pack(pady=0, padx=10, fill="both")
+                        ]["entry"].pack(padx=10, fill="both")
 
-                        self.shapeEntryArray.append(
-                            self.shapeParameterComponentObject[
-                                shapeFormulaInputObject["name"]
-                            ]["entry"]
-                        )
-
+        self.calculateButton.pack(pady=(10, 0), padx=10, fill="both")
         self.show2D() if self.shapeDimension == "2D" else self.show3D()
 
-        print(self.shapeEntryArray)
+    def calculate(self):
+        for shape in self.shapeArray[self.shapeDimension]:
+            if shape["name"] == self.shapeChoiceObject[self.shapeDimension]:
+                valueArray = []
+                for shapeFormulaObject in shape["formula"]:
+                    valueArray.append(
+                        Utility.removeTrailingZero(
+                            shapeFormulaObject["output"](
+                                *[
+                                    float(
+                                        self.shapeParameterComponentObject[
+                                            shapeFormulaInputObject["name"]
+                                        ]["entry"].get()
+                                        if Utility.isFloat(
+                                            (
+                                                self.shapeParameterComponentObject[
+                                                    shapeFormulaInputObject["name"]
+                                                ]["entry"].get()
+                                            )
+                                        )
+                                        else 0
+                                    )
+                                    for shapeFormulaInputObject in shapeFormulaObject[
+                                        "input"
+                                    ]
+                                ]
+                            )
+                        )
+                    )
+
+                if self.shapeDimension == "2D":
+                    self.areaEntryText.set([valueArray[0]])
+                    self.perimeterEntryText.set([valueArray[1]])
+
+                else:
+                    self.volumeEntryText.set([valueArray[0]])
+                    self.surfaceAreaEntryText.set([valueArray[1]])
 
 
 if __name__ == "__main__":
