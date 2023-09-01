@@ -422,6 +422,7 @@ class App(customtkinter.CTk):
         for componentObject in self.shapeParameterComponentObject.values():
             componentObject["label"].pack_forget()
             componentObject["entry"].pack_forget()
+            componentObject["entry"].delete(0, customtkinter.END)
 
     def hide2D(self):
         self.areaLabel.pack_forget()
@@ -429,11 +430,17 @@ class App(customtkinter.CTk):
         self.perimeterLabel.pack_forget()
         self.perimeterEntry.pack_forget()
 
+        self.areaEntryText.set(0)
+        self.perimeterEntryText.set(0)
+
     def hide3D(self):
         self.volumeLabel.pack_forget()
         self.volumeEntry.pack_forget()
         self.surfaceAreaLabel.pack_forget()
         self.surfaceAreaEntry.pack_forget()
+
+        self.volumeEntryText.set(0)
+        self.surfaceAreaEntryText.set(0)
 
     def show2D(self):
         self.areaLabel.pack(pady=(5, 0), padx=10, fill="both")
