@@ -205,23 +205,25 @@ class App(customtkinter.CTk):
             state="disabled",
         )
 
-    def show2D(self):
+    def hide2D(self):
+        self.areaLabel.pack_forget()
+        self.areaEntry.pack_forget()
+        self.perimeterLabel.pack_forget()
+        self.perimeterEntry.pack_forget()
+
+    def hide3D(self):
         self.volumeLabel.pack_forget()
         self.volumeEntry.pack_forget()
         self.surfaceAreaLabel.pack_forget()
         self.surfaceAreaEntry.pack_forget()
 
+    def show2D(self):
         self.areaLabel.pack(pady=(40, 0), padx=10, fill="both")
         self.areaEntry.pack(padx=10, fill="both")
         self.perimeterLabel.pack(pady=(10, 0), padx=10, fill="both")
         self.perimeterEntry.pack(padx=10, fill="both")
 
     def show3D(self):
-        self.areaLabel.pack_forget()
-        self.areaEntry.pack_forget()
-        self.perimeterLabel.pack_forget()
-        self.perimeterEntry.pack_forget()
-
         self.volumeLabel.pack(pady=(40, 0), padx=10, fill="both")
         self.volumeEntry.pack(padx=10, fill="both")
         self.surfaceAreaLabel.pack(pady=(10, 0), padx=10, fill="both")
@@ -233,6 +235,8 @@ class App(customtkinter.CTk):
 
     def dimensionSegmentedEvent(self, value):
         if value == "2D":
+            self.hide3D()            
+
             self.shapeOption.configure(
                 values=[shape["name"] for shape in Depedency.shapes["2D"]]
             )
@@ -242,6 +246,8 @@ class App(customtkinter.CTk):
             self.shapeDimension = 2
 
         else:
+            self.hide2D()
+
             self.shapeOption.configure(
                 values=[shape["name"] for shape in Depedency.shapes["3D"]]
             )
