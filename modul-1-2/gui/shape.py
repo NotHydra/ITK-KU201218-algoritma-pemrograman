@@ -31,6 +31,13 @@ class Shape:
             ) -> float:
                 return firstSide + secondSide + thirdSide
 
+        class Circle:
+            def area(radius: float) -> float:
+                return pi * radius**2
+
+            def perimeter(radius: float) -> float:
+                return 2 * pi * radius
+
     class Three:
         class Cube:
             def volume(length: float) -> float:
