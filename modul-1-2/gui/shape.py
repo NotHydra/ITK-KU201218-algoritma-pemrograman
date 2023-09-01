@@ -24,9 +24,9 @@ class Shape:
                 return (1 / 2) * base * height
 
             def perimeter(
-                firstSide: float, secondLength: float, thirdLength: float
+                firstLength: float, secondLength: float, thirdLength: float
             ) -> float:
-                return firstSide + secondLength + thirdLength
+                return firstLength + secondLength + thirdLength
 
         class Circle:
             def area(radius: float) -> float:
@@ -78,22 +78,6 @@ class Depedency:
 
     resolution = {"width": 400, "height": 600}
 
-    shapes = {
-        "2D": [
-            {"id": 1, "name": "Square", "formula": Shape.Two.Square},
-            {"id": 2, "name": "Rectangle", "formula": Shape.Two.Rectangle},
-            {"id": 3, "name": "Triangle", "formula": Shape.Two.Triangle},
-            {"id": 4, "name": "Circle", "formula": Shape.Two.Circle},
-        ],
-        "3D": [
-            {"id": 1, "name": "Cube", "formula": Shape.Three.Cube},
-            {"id": 2, "name": "Cuboid", "formula": Shape.Three.Cuboid},
-            {"id": 3, "name": "Cone", "formula": Shape.Three.Cone},
-            {"id": 4, "name": "Sphere", "formula": Shape.Three.Sphere},
-            {"id": 5, "name": "Cylinder", "formula": Shape.Three.Cylinder},
-        ],
-    }
-
 
 customtkinter.set_appearance_mode(Depedency.ctkAppearance)
 customtkinter.set_default_color_theme(Depedency.ctkColorTheme)
@@ -103,11 +87,202 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        self.shapeDimension = "2D"
-        self.shapeChoice = {
-            "2D": Depedency.shapes["2D"][0]["name"],
-            "3D": Depedency.shapes["3D"][0]["name"],
+        self.shapeArray = {
+            "2D": [
+                {
+                    "id": 1,
+                    "name": "Square",
+                    "formula": {
+                        "area": {
+                            "input": [{"id": 1, "name": "length"}],
+                            "output": Shape.Two.Square.area,
+                        },
+                        "perimeter": {
+                            "input": [{"id": 1, "name": "length"}],
+                            "output": Shape.Two.Square.perimeter,
+                        },
+                    },
+                },
+                {
+                    "id": 2,
+                    "name": "Rectangle",
+                    "formula": {
+                        "area": {
+                            "input": [
+                                {"id": 1, "name": "length"},
+                                {"id": 2, "name": "width"},
+                            ],
+                            "output": Shape.Two.Rectangle.area,
+                        },
+                        "perimeter": {
+                            "input": [
+                                {"id": 1, "name": "length"},
+                                {"id": 2, "name": "width"},
+                            ],
+                            "output": Shape.Two.Rectangle.perimeter,
+                        },
+                    },
+                },
+                {
+                    "id": 3,
+                    "name": "Triangle",
+                    "formula": {
+                        "area": {
+                            "input": [
+                                {"id": 1, "name": "base"},
+                                {"id": 1, "name": "height"},
+                            ],
+                            "output": Shape.Two.Triangle.area,
+                        },
+                        "perimeter": {
+                            "input": [
+                                {"id": 1, "name": "firstLength"},
+                                {"id": 2, "name": "secondLength"},
+                                {"id": 3, "name": "thirdLength"},
+                            ],
+                            "output": Shape.Two.Triangle.perimeter,
+                        },
+                    },
+                },
+                {
+                    "id": 4,
+                    "name": "Circle",
+                    "formula": {
+                        "area": {
+                            "input": [{"id": 1, "name": "radius"}],
+                            "output": Shape.Two.Circle.area,
+                        },
+                        "perimeter": {
+                            "input": [{"id": 1, "name": "radius"}],
+                            "output": Shape.Two.Circle.perimeter,
+                        },
+                    },
+                },
+            ],
+            "3D": [
+                {
+                    "id": 1,
+                    "name": "Cube",
+                    "formula": {
+                        "area": {
+                            "input": [{"id": 1, "name": "length"}],
+                            "output": Shape.Three.Cube.volume,
+                        },
+                        "perimeter": {
+                            "input": [{"id": 1, "name": "length"}],
+                            "output": Shape.Three.Cube.surfaceArea,
+                        },
+                    },
+                },
+                {
+                    "id": 2,
+                    "name": "Cuboid",
+                    "formula": {
+                        "area": {
+                            "input": [
+                                {"id": 1, "name": "length"},
+                                {"id": 2, "name": "width"},
+                                {"id": 3, "name": "height"},
+                            ],
+                            "output": Shape.Three.Cuboid.volume,
+                        },
+                        "perimeter": {
+                            "input": [
+                                {"id": 1, "name": "length"},
+                                {"id": 2, "name": "width"},
+                                {"id": 3, "name": "height"},
+                            ],
+                            "output": Shape.Three.Cuboid.surfaceArea,
+                        },
+                    },
+                },
+                {
+                    "id": 3,
+                    "name": "Cone",
+                    "formula": {
+                        "area": {
+                            "input": [
+                                {"id": 1, "name": "radius"},
+                                {"id": 2, "name": "height"},
+                            ],
+                            "output": Shape.Three.Cone.volume,
+                        },
+                        "perimeter": {
+                            "input": [
+                                {"id": 1, "name": "radius"},
+                                {"id": 2, "name": "height"},
+                            ],
+                            "output": Shape.Three.Cone.surfaceArea,
+                        },
+                    },
+                },
+                {
+                    "id": 4,
+                    "name": "Sphere",
+                    "formula": {
+                        "area": {
+                            "input": [{"id": 1, "name": "radius"}],
+                            "output": Shape.Three.Sphere.volume,
+                        },
+                        "perimeter": {
+                            "input": [{"id": 1, "name": "radius"}],
+                            "output": Shape.Three.Sphere.surfaceArea,
+                        },
+                    },
+                },
+                {
+                    "id": 5,
+                    "name": "Cylinder",
+                    "formula": {
+                        "area": {
+                            "input": [
+                                {"id": 1, "name": "radius"},
+                                {"id": 2, "name": "height"},
+                            ],
+                            "output": Shape.Three.Cylinder.volume,
+                        },
+                        "perimeter": {
+                            "input": [
+                                {"id": 1, "name": "radius"},
+                                {"id": 2, "name": "height"},
+                            ],
+                            "output": Shape.Three.Cylinder.surfaceArea,
+                        },
+                    },
+                },
+            ],
         }
+        self.shapeDimension = "2D"
+        self.shapeChoiceObject = {
+            "2D": self.shapeArray["2D"][0]["name"],
+            "3D": self.shapeArray["3D"][0]["name"],
+        }
+        self.shapeParameterArray = [
+            {"id": 1, "name": "length", "display": "Length", "placeholder": "length"},
+            {"id": 2, "name": "width", "display": "Width", "placeholder": "width"},
+            {"id": 3, "name": "height", "display": "Height", "placeholder": "height"},
+            {"id": 4, "name": "base", "display": "Base", "placeholder": "base"},
+            {
+                "id": 5,
+                "name": "firstLength",
+                "display": "First Length",
+                "placeholder": "first length",
+            },
+            {
+                "id": 6,
+                "name": "secondLength",
+                "display": "Second Length",
+                "placeholder": "second length",
+            },
+            {
+                "id": 7,
+                "name": "thirdLength",
+                "display": "Third Length",
+                "placeholder": "third length",
+            },
+            {"id": 8, "name": "radius", "display": "Radius", "placeholder": "radius"},
+        ]
+        self.shapeEntryArray = []
 
         self.title("Shape Calculator")
         self.geometry(
@@ -130,14 +305,39 @@ class App(customtkinter.CTk):
         self.shapeOption = customtkinter.CTkOptionMenu(
             self.mainFrame,
             command=self.refreshShape,
-            values=[shape["name"] for shape in Depedency.shapes["2D"]],
+            values=[shape["name"] for shape in self.shapeArray["2D"]],
             font=customtkinter.CTkFont(size=14, weight="bold"),
         )
-        self.shapeOption.set(Depedency.shapes["2D"][0]["name"])
-        self.shapeOption.pack(pady=10, padx=10, fill="both")
+        self.shapeOption.set(self.shapeArray["2D"][0]["name"])
+        self.shapeOption.pack(pady=(10, 5), padx=10, fill="both")
+
+        self.componentParameter()
+        self.component2D()
+        self.component3D()
+
+        self.refreshShape()
+
+    def componentParameter(self):
+        self.shapeParameterComponentObject = {
+            shapeParameterObject["name"]: {
+                "label": customtkinter.CTkLabel(
+                    self.mainFrame,
+                    text=f"{shapeParameterObject['display']}:",
+                    font=customtkinter.CTkFont(size=14, weight="bold"),
+                    anchor="w",
+                ),
+                "entry": customtkinter.CTkEntry(
+                    self.mainFrame,
+                    placeholder_text=f"Insert {shapeParameterObject['placeholder']} here",
+                    font=customtkinter.CTkFont(size=12, weight="bold"),
+                ),
+            }
+            for shapeParameterObject in self.shapeParameterArray
+        }
 
     def component2D(self):
         self.areaEntryText = customtkinter.StringVar()
+        self.areaEntryText.set(0)
         self.areaLabel = customtkinter.CTkLabel(
             self.mainFrame,
             text="Area",
@@ -148,9 +348,11 @@ class App(customtkinter.CTk):
             font=customtkinter.CTkFont(size=14, weight="bold"),
             textvariable=self.areaEntryText,
             state="disabled",
+            justify="center",
         )
 
         self.perimeterEntryText = customtkinter.StringVar()
+        self.perimeterEntryText.set(0)
         self.perimeterLabel = customtkinter.CTkLabel(
             self.mainFrame,
             text="Perimeter",
@@ -161,10 +363,12 @@ class App(customtkinter.CTk):
             font=customtkinter.CTkFont(size=14, weight="bold"),
             textvariable=self.perimeterEntryText,
             state="disabled",
+            justify="center",
         )
 
     def component3D(self):
         self.volumeEntryText = customtkinter.StringVar()
+        self.volumeEntryText.set(0)
         self.volumeLabel = customtkinter.CTkLabel(
             self.mainFrame,
             text="Volume",
@@ -175,9 +379,11 @@ class App(customtkinter.CTk):
             font=customtkinter.CTkFont(size=14, weight="bold"),
             textvariable=self.volumeEntryText,
             state="disabled",
+            justify="center",
         )
 
         self.surfaceAreaEntryText = customtkinter.StringVar()
+        self.surfaceAreaEntryText.set(0)
         self.surfaceAreaLabel = customtkinter.CTkLabel(
             self.mainFrame,
             text="Surface Area",
@@ -188,7 +394,13 @@ class App(customtkinter.CTk):
             font=customtkinter.CTkFont(size=14, weight="bold"),
             textvariable=self.surfaceAreaEntryText,
             state="disabled",
+            justify="center",
         )
+
+    def hideParameter(self):
+        for componentObject in self.shapeParameterComponentObject.values():
+            componentObject["label"].pack_forget()
+            componentObject["entry"].pack_forget()
 
     def hide2D(self):
         self.areaLabel.pack_forget()
@@ -203,13 +415,13 @@ class App(customtkinter.CTk):
         self.surfaceAreaEntry.pack_forget()
 
     def show2D(self):
-        self.areaLabel.pack(pady=(40, 0), padx=10, fill="both")
+        self.areaLabel.pack(pady=(20, 0), padx=10, fill="both")
         self.areaEntry.pack(padx=10, fill="both")
         self.perimeterLabel.pack(pady=(10, 0), padx=10, fill="both")
         self.perimeterEntry.pack(padx=10, fill="both")
 
     def show3D(self):
-        self.volumeLabel.pack(pady=(40, 0), padx=10, fill="both")
+        self.volumeLabel.pack(pady=(20, 0), padx=10, fill="both")
         self.volumeEntry.pack(padx=10, fill="both")
         self.surfaceAreaLabel.pack(pady=(10, 0), padx=10, fill="both")
         self.surfaceAreaEntry.pack(padx=10, fill="both")
@@ -218,18 +430,37 @@ class App(customtkinter.CTk):
         self.shapeDimension = value
 
         self.shapeOption.configure(
-            values=[shape["name"] for shape in Depedency.shapes[self.shapeDimension]]
+            values=[shape["name"] for shape in self.shapeArray[self.shapeDimension]]
         )
-        self.shapeOption.set(self.shapeChoice[self.shapeDimension])
+        self.shapeOption.set(self.shapeChoiceObject[self.shapeDimension])
 
-        self.refreshShape(self.shapeChoice[self.shapeDimension])
+        self.refreshShape(self.shapeChoiceObject[self.shapeDimension])
 
-    def refreshShape(self, value):
-        self.shapeChoice[self.shapeDimension] = value
+    def refreshShape(self, value=None):
+        self.hide2D()
+        self.hide3D()
+        self.hideParameter()
+        self.shapeEntryArray.clear()
 
-        for shape in Depedency.shapes[self.shapeDimension]:
-            if shape["name"] == self.shapeChoice[self.shapeDimension]:
-                print(shape)
+        if value != None:
+            self.shapeChoiceObject[self.shapeDimension] = value
+
+        for shape in self.shapeArray[self.shapeDimension]:
+            if shape["name"] == self.shapeChoiceObject[self.shapeDimension]:
+                for shapeInput in shape["formula"]["area"]["input"]:
+                    self.shapeParameterComponentObject[shapeInput["name"]][
+                        "label"
+                    ].pack(pady=(5, 0), padx=10, fill="both")
+
+                    self.shapeParameterComponentObject[shapeInput["name"]][
+                        "entry"
+                    ].pack(pady=0, padx=10, fill="both")
+
+                    self.shapeEntryArray.append(
+                        self.shapeParameterComponentObject[shapeInput["name"]]["entry"]
+                    )
+
+        self.show2D() if self.shapeDimension == "2D" else self.show3D()
 
 
 if __name__ == "__main__":
