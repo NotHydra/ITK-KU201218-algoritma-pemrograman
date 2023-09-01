@@ -92,49 +92,49 @@ class App(customtkinter.CTk):
                 {
                     "id": 1,
                     "name": "Square",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [{"id": 1, "name": "length"}],
                             "output": Shape.Two.Square.area,
                         },
-                        "perimeter": {
+                        {
                             "input": [{"id": 1, "name": "length"}],
                             "output": Shape.Two.Square.perimeter,
                         },
-                    },
+                    ],
                 },
                 {
                     "id": 2,
                     "name": "Rectangle",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [
                                 {"id": 1, "name": "length"},
                                 {"id": 2, "name": "width"},
                             ],
                             "output": Shape.Two.Rectangle.area,
                         },
-                        "perimeter": {
+                        {
                             "input": [
                                 {"id": 1, "name": "length"},
                                 {"id": 2, "name": "width"},
                             ],
                             "output": Shape.Two.Rectangle.perimeter,
                         },
-                    },
+                    ],
                 },
                 {
                     "id": 3,
                     "name": "Triangle",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [
                                 {"id": 1, "name": "base"},
                                 {"id": 1, "name": "height"},
                             ],
                             "output": Shape.Two.Triangle.area,
                         },
-                        "perimeter": {
+                        {
                             "input": [
                                 {"id": 1, "name": "firstLength"},
                                 {"id": 2, "name": "secondLength"},
@@ -142,43 +142,43 @@ class App(customtkinter.CTk):
                             ],
                             "output": Shape.Two.Triangle.perimeter,
                         },
-                    },
+                    ],
                 },
                 {
                     "id": 4,
                     "name": "Circle",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [{"id": 1, "name": "radius"}],
                             "output": Shape.Two.Circle.area,
                         },
-                        "perimeter": {
+                        {
                             "input": [{"id": 1, "name": "radius"}],
                             "output": Shape.Two.Circle.perimeter,
                         },
-                    },
+                    ],
                 },
             ],
             "3D": [
                 {
                     "id": 1,
                     "name": "Cube",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [{"id": 1, "name": "length"}],
                             "output": Shape.Three.Cube.volume,
                         },
-                        "perimeter": {
+                        {
                             "input": [{"id": 1, "name": "length"}],
                             "output": Shape.Three.Cube.surfaceArea,
                         },
-                    },
+                    ],
                 },
                 {
                     "id": 2,
                     "name": "Cuboid",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [
                                 {"id": 1, "name": "length"},
                                 {"id": 2, "name": "width"},
@@ -186,7 +186,7 @@ class App(customtkinter.CTk):
                             ],
                             "output": Shape.Three.Cuboid.volume,
                         },
-                        "perimeter": {
+                        {
                             "input": [
                                 {"id": 1, "name": "length"},
                                 {"id": 2, "name": "width"},
@@ -194,61 +194,61 @@ class App(customtkinter.CTk):
                             ],
                             "output": Shape.Three.Cuboid.surfaceArea,
                         },
-                    },
+                    ],
                 },
                 {
                     "id": 3,
                     "name": "Cone",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [
                                 {"id": 1, "name": "radius"},
                                 {"id": 2, "name": "height"},
                             ],
                             "output": Shape.Three.Cone.volume,
                         },
-                        "perimeter": {
+                        {
                             "input": [
                                 {"id": 1, "name": "radius"},
                                 {"id": 2, "name": "height"},
                             ],
                             "output": Shape.Three.Cone.surfaceArea,
                         },
-                    },
+                    ],
                 },
                 {
                     "id": 4,
                     "name": "Sphere",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [{"id": 1, "name": "radius"}],
                             "output": Shape.Three.Sphere.volume,
                         },
-                        "perimeter": {
+                        {
                             "input": [{"id": 1, "name": "radius"}],
                             "output": Shape.Three.Sphere.surfaceArea,
                         },
-                    },
+                    ],
                 },
                 {
                     "id": 5,
                     "name": "Cylinder",
-                    "formula": {
-                        "area": {
+                    "formula": [
+                        {
                             "input": [
                                 {"id": 1, "name": "radius"},
                                 {"id": 2, "name": "height"},
                             ],
                             "output": Shape.Three.Cylinder.volume,
                         },
-                        "perimeter": {
+                        {
                             "input": [
                                 {"id": 1, "name": "radius"},
                                 {"id": 2, "name": "height"},
                             ],
                             "output": Shape.Three.Cylinder.surfaceArea,
                         },
-                    },
+                    ],
                 },
             ],
         }
@@ -447,20 +447,25 @@ class App(customtkinter.CTk):
 
         for shape in self.shapeArray[self.shapeDimension]:
             if shape["name"] == self.shapeChoiceObject[self.shapeDimension]:
-                for shapeInput in shape["formula"]["area"]["input"]:
-                    self.shapeParameterComponentObject[shapeInput["name"]][
-                        "label"
-                    ].pack(pady=(5, 0), padx=10, fill="both")
+                for shapeFormulaObject in shape["formula"]:
+                    for shapeFormulaInputObject in shapeFormulaObject["input"]:
+                        self.shapeParameterComponentObject[
+                            shapeFormulaInputObject["name"]
+                        ]["label"].pack(pady=(5, 0), padx=10, fill="both")
 
-                    self.shapeParameterComponentObject[shapeInput["name"]][
-                        "entry"
-                    ].pack(pady=0, padx=10, fill="both")
+                        self.shapeParameterComponentObject[
+                            shapeFormulaInputObject["name"]
+                        ]["entry"].pack(pady=0, padx=10, fill="both")
 
-                    self.shapeEntryArray.append(
-                        self.shapeParameterComponentObject[shapeInput["name"]]["entry"]
-                    )
+                        self.shapeEntryArray.append(
+                            self.shapeParameterComponentObject[
+                                shapeFormulaInputObject["name"]
+                            ]["entry"]
+                        )
 
         self.show2D() if self.shapeDimension == "2D" else self.show3D()
+
+        print(self.shapeEntryArray)
 
 
 if __name__ == "__main__":
