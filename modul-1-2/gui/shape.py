@@ -15,6 +15,13 @@ class Shape:
             def perimeter(length: float) -> float:
                 return length * 4
 
+        class Rectangle:
+            def area(length: float, width: float) -> float:
+                return length * width
+
+            def perimeter(length: float, width: float) -> float:
+                return 2 * (length + width)
+
     class Three:
         class Cube:
             def volume(length: float) -> float:
