@@ -22,6 +22,15 @@ class Shape:
             def perimeter(length: float, width: float) -> float:
                 return 2 * (length + width)
 
+        class Triangle:
+            def area(base: float, height: float) -> float:
+                return (1 / 2) * base * height
+
+            def perimeter(
+                firstSide: float, secondSide: float, thirdSide: float
+            ) -> float:
+                return firstSide + secondSide + thirdSide
+
     class Three:
         class Cube:
             def volume(length: float) -> float:
