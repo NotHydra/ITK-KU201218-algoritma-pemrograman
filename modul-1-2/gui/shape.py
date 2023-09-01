@@ -24,9 +24,9 @@ class Shape:
                 return (1 / 2) * base * height
 
             def perimeter(
-                firstSide: float, secondSide: float, thirdSide: float
+                firstSide: float, secondLength: float, thirdLength: float
             ) -> float:
-                return firstSide + secondSide + thirdSide
+                return firstSide + secondLength + thirdLength
 
         class Circle:
             def area(radius: float) -> float:
@@ -103,6 +103,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
+        self.shapeDimension = "2D"
         self.shapeChoice = {
             "2D": Depedency.shapes["2D"][0]["name"],
             "3D": Depedency.shapes["3D"][0]["name"],
@@ -119,7 +120,7 @@ class App(customtkinter.CTk):
 
         self.dimensionSegmented = customtkinter.CTkSegmentedButton(
             self.mainFrame,
-            command=self.dimensionSegmentedEvent,
+            command=self.refreshDimension,
             values=["2D", "3D"],
             font=customtkinter.CTkFont(size=14, weight="bold"),
         )
@@ -128,28 +129,12 @@ class App(customtkinter.CTk):
 
         self.shapeOption = customtkinter.CTkOptionMenu(
             self.mainFrame,
-            command=self.shapeOptionEvent,
+            command=self.refreshShape,
             values=[shape["name"] for shape in Depedency.shapes["2D"]],
             font=customtkinter.CTkFont(size=14, weight="bold"),
         )
         self.shapeOption.set(Depedency.shapes["2D"][0]["name"])
         self.shapeOption.pack(pady=10, padx=10, fill="both")
-
-        self.lengthLabel = customtkinter.CTkLabel(
-            self.mainFrame,
-            text="Length: ",
-            font=customtkinter.CTkFont(size=14, weight="bold"),
-            anchor="w",
-        )
-        self.lengthEntry = customtkinter.CTkEntry(
-            self.mainFrame,
-            placeholder_text="Insert length here",
-            font=customtkinter.CTkFont(size=12, weight="bold"),
-        )
-
-        self.component2D()
-        self.component3D()
-        self.defaultShapeDimension()
 
     def component2D(self):
         self.areaEntryText = customtkinter.StringVar()
@@ -229,39 +214,22 @@ class App(customtkinter.CTk):
         self.surfaceAreaLabel.pack(pady=(10, 0), padx=10, fill="both")
         self.surfaceAreaEntry.pack(padx=10, fill="both")
 
-    def defaultShapeDimension(self):
-        self.shapeDimension = 2
-        self.show2D()
+    def refreshDimension(self, value):
+        self.shapeDimension = value
 
-    def dimensionSegmentedEvent(self, value):
-        if value == "2D":
-            self.hide3D()            
+        self.shapeOption.configure(
+            values=[shape["name"] for shape in Depedency.shapes[self.shapeDimension]]
+        )
+        self.shapeOption.set(self.shapeChoice[self.shapeDimension])
 
-            self.shapeOption.configure(
-                values=[shape["name"] for shape in Depedency.shapes["2D"]]
-            )
-            self.shapeOption.set(self.shapeChoice["2D"])
+        self.refreshShape(self.shapeChoice[self.shapeDimension])
 
-            self.show2D()
-            self.shapeDimension = 2
+    def refreshShape(self, value):
+        self.shapeChoice[self.shapeDimension] = value
 
-        else:
-            self.hide2D()
-
-            self.shapeOption.configure(
-                values=[shape["name"] for shape in Depedency.shapes["3D"]]
-            )
-            self.shapeOption.set(self.shapeChoice["3D"])
-
-            self.show3D()
-            self.shapeDimension = 3
-
-    def shapeOptionEvent(self, value):
-        if self.shapeDimension == 2:
-            self.shapeChoice["2D"] = value
-
-        else:
-            self.shapeChoice["3D"] = value
+        for shape in Depedency.shapes[self.shapeDimension]:
+            if shape["name"] == self.shapeChoice[self.shapeDimension]:
+                print(shape)
 
 
 if __name__ == "__main__":
