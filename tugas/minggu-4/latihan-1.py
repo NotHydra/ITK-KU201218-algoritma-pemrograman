@@ -4,13 +4,13 @@ print()
 if year % 4 == 0:
     if year % 100 == 0:
         if year % 400 == 0:
-            print("Kabisat")
+            print("Tahun Kabisat")
 
         else:
-            print("N Kabisat")
+            print("Bbukan Tahun Kabisat")
 
     else:
-        print("Kabisat")
+        print("Tahun Kabisat")
 
 else:
-    print("N Kabisat")
+    print("Bukan Tahun Kabisat")
