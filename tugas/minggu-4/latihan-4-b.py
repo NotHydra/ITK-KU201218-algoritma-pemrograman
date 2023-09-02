@@ -1,16 +1,16 @@
 nilai = int(input("Nilai: "))
 print()
 
-if 90 <= nilai <= 100:
+if nilai >= 90 and nilai <= 100:
     pangkat = "A"
 
-elif 80 <= nilai <= 89:
+elif nilai >= 80 and nilai <= 89:
     pangkat = "B"
 
-elif 70 <= nilai <= 79:
+elif nilai >= 70 and nilai <= 79:
     pangkat = "C"
 
-elif 60 <= nilai <= 69:
+elif nilai >= 60 and nilai <= 69:
     pangkat = "D"
 
 else:
