@@ -1,8 +1,5 @@
-# for year in range(1, 2040):
-#     print(f"{year} ", end="")
-
-# year = int(input("Input Tahun: "))
-year = 2400
+year = int(input("Tahun: "))
+print()
 
 if year % 4 == 0:
     if year % 100 == 0:
