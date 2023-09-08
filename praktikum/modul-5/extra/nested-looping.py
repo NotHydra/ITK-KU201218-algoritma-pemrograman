@@ -33,8 +33,9 @@ class Program:
         Utility.printFormat()
 
         print()
+        isX = True
         for i in range(number, 0, -1):
-            if i % 2 == 1:
+            if isX:
                 for j in range(i):
                     print("x", end="")
 
@@ -43,6 +44,8 @@ class Program:
                     print("-", end="")
 
             print()
+
+            isX = not isX
 
         print()
 
