@@ -10,8 +10,8 @@ class Utility:
     def clear() -> None:
         system("cls")
 
-    def printFormat(text: str = "") -> None:
-        print(text.center(Dependency.textLength, Dependency.textFill))
+    def printFormat(text: str = "", textFill=Dependency.textFill) -> None:
+        print(text.center(Dependency.textLength, textFill))
 
 
 class Program:
@@ -34,7 +34,9 @@ class Program:
         programIsRunning = True
         while programIsRunning:
             try:
-                Utility.printFormat("Fibonacci")
+                Utility.printFormat()
+                Utility.printFormat("Fibonacci", textFill="-")
+                Utility.printFormat()
 
                 number = int(input("Number: "))
 
@@ -56,7 +58,7 @@ class Program:
 
                 elif option.upper() == "N":
                     Utility.printFormat()
-                    print("Thank You For Using Our Program")
+                    Utility.printFormat("Thank You For Using Our Program", textFill="-")
                     Utility.printFormat()
 
                     programIsRunning = False
