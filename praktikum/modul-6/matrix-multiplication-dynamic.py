@@ -16,12 +16,12 @@ for matrixDimension in matrix:
 
         j = 0
         total = 0
-        tempMatrixResultArray = [[] for _ in range(len(matrixDimension[1][0]))]
+        tempMatrixResultArray = [0 for _ in range(len(matrixDimension[1][0]))]
         while j < len(matrixDimension[1][0]):
 
             k = 0
             while k < len(matrixDimension[0][i]):
-                tempMatrixResultArray[j].append(
+                tempMatrixResultArray[j] += (
                     matrixDimension[0][i][k] * matrixDimension[1][k][j]
                 )
 
@@ -29,12 +29,7 @@ for matrixDimension in matrix:
 
             j += 1
 
-        matrixResultArray.append(
-            [
-                sum(tempMatrixResultObject)
-                for tempMatrixResultObject in tempMatrixResultArray
-            ]
-        )
+        matrixResultArray.append(tempMatrixResultArray)
 
         i += 1
 
