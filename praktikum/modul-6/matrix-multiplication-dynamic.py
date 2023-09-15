@@ -1,4 +1,4 @@
-matrix = [
+matrixArray = [
     [[[1, 2]], [[3], [4]]],
     [[[1, 2]], [[3, 4], [5, 6]]],
     [[[1, 2], [3, 4]], [[5, 6], [7, 8]]],
@@ -9,20 +9,20 @@ matrix = [
 ]
 
 
-for matrixDimension in matrix:
+for matrixObject in matrixArray:
     i = 0
     matrixResultArray = []
-    while i < len(matrixDimension[0]):
+    while i < len(matrixObject[0]):
 
         j = 0
         total = 0
-        tempMatrixResultArray = [0 for _ in range(len(matrixDimension[1][0]))]
-        while j < len(matrixDimension[1][0]):
+        tempMatrixResultArray = [0 for _ in range(len(matrixObject[1][0]))]
+        while j < len(matrixObject[1][0]):
 
             k = 0
-            while k < len(matrixDimension[0][i]):
+            while k < len(matrixObject[0][i]):
                 tempMatrixResultArray[j] += (
-                    matrixDimension[0][i][k] * matrixDimension[1][k][j]
+                    matrixObject[0][i][k] * matrixObject[1][k][j]
                 )
 
                 k += 1
