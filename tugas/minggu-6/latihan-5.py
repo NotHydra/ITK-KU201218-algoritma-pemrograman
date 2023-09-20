@@ -8,6 +8,8 @@ def debug(*text, active=False):
 
 caseList = [sample(range(1, 500), 100) for _ in range(1, 50)]
 
+caseList.extend([[5, 4, 8, 7, 2, 10, 1, 6, 3, 9]])
+
 for caseObject in caseList:
     sortedList = caseObject.copy()
 
