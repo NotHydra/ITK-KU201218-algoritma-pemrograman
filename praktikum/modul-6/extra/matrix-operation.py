@@ -57,7 +57,7 @@ class Program:
         Utility.clear()
 
         Utility.printFormat()
-        Utility.printFormat("Matrix Management", textFill="-")
+        Utility.printFormat("Matrix Operation", textFill="-")
         Utility.printFormat()
 
         if customMenuList == None:
