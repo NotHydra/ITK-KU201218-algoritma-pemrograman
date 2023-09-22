@@ -329,12 +329,17 @@ class Program:
                             ):
                                 raise Exception()
 
+                            firstMatrix = Program.matrixList[firstMatrixOption - 1]
+                            secondMatrix = Program.matrixList[secondMatrixOption - 1]
+
+                            if len(firstMatrix) != len(secondMatrix) or len(
+                                firstMatrix[0]
+                            ) != len(secondMatrix[0]):
+                                raise Exception()
+
                             Utility.printFormat()
                             Utility.printFormat("Result", textFill="-")
                             Utility.printFormat()
-
-                            firstMatrix = Program.matrixList[firstMatrixOption - 1]
-                            secondMatrix = Program.matrixList[secondMatrixOption - 1]
 
                             addMatrix = []
 
@@ -343,7 +348,7 @@ class Program:
 
                                 j = 0
                                 tempAddMatrix = []
-                                while j < len(firstMatrix):
+                                while j < len(firstMatrix[0]):
                                     tempAddMatrix.append(
                                         firstMatrix[i][j] + secondMatrix[i][j]
                                     )
