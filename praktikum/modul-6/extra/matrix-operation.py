@@ -4,7 +4,7 @@ from time import sleep
 
 
 class Dependency:
-    textLength = 50
+    textLength = 75
     textFill = "="
 
     programIsRunning = True
@@ -360,6 +360,85 @@ class Program:
                                 i += 1
 
                             print(addMatrix)
+
+                        except:
+                            Utility.printFormat()
+                            Utility.printFormat("Input Not Valid", textFill="-")
+
+                    Utility.printFormat()
+                    Program.back()
+
+                    sleep(0.50)
+                    while True:
+                        if is_pressed("right"):
+                            break
+
+                elif Dependency.menuOption == 6:
+                    Program.refresh(customMenuList=[], guide=False)
+                    Utility.printFormat("Subtract", textFill="-")
+                    Utility.printFormat()
+
+                    if len(Program.matrixList) == 0:
+                        print("Empty")
+
+                    else:
+                        try:
+                            for matrixIndex, matrixObject in enumerate(
+                                Program.matrixList
+                            ):
+                                print(f"{matrixIndex + 1}. {matrixObject}")
+
+                            Utility.printFormat()
+                            Utility.printFormat("Choose First Matrix", textFill="-")
+                            Utility.printFormat()
+
+                            firstMatrixOption = int(input("First Matrix: "))
+                            if firstMatrixOption <= 0 or firstMatrixOption > len(
+                                Program.matrixList
+                            ):
+                                raise Exception()
+
+                            Utility.printFormat()
+                            Utility.printFormat("Choose Second Matrix", textFill="-")
+                            Utility.printFormat()
+
+                            secondMatrixOption = int(input("Second Matrix: "))
+                            if secondMatrixOption <= 0 or secondMatrixOption > len(
+                                Program.matrixList
+                            ):
+                                raise Exception()
+
+                            firstMatrix = Program.matrixList[firstMatrixOption - 1]
+                            secondMatrix = Program.matrixList[secondMatrixOption - 1]
+
+                            if len(firstMatrix) != len(secondMatrix) or len(
+                                firstMatrix[0]
+                            ) != len(secondMatrix[0]):
+                                raise Exception()
+
+                            Utility.printFormat()
+                            Utility.printFormat("Result", textFill="-")
+                            Utility.printFormat()
+
+                            subtractMatrix = []
+
+                            i = 0
+                            while i < len(firstMatrix):
+
+                                j = 0
+                                tempSubtractMatrix = []
+                                while j < len(firstMatrix[0]):
+                                    tempSubtractMatrix.append(
+                                        firstMatrix[i][j] - secondMatrix[i][j]
+                                    )
+
+                                    j += 1
+
+                                subtractMatrix.append(tempSubtractMatrix)
+
+                                i += 1
+
+                            print(subtractMatrix)
 
                         except:
                             Utility.printFormat()
