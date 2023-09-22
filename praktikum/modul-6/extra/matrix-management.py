@@ -4,7 +4,7 @@ from time import sleep
 
 
 class Dependency:
-    textLength = 75
+    textLength = 100
     textFill = "="
 
     programIsRunning = True
