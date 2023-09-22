@@ -184,16 +184,18 @@ class Program:
                             Utility.printFormat("Choose", textFill="-")
                             Utility.printFormat()
 
-                            listOption = int(input("List: "))
-                            if listOption <= 0 or listOption > len(Program.matrixList):
+                            matrixOption = int(input("Matrix: "))
+                            if matrixOption <= 0 or matrixOption > len(
+                                Program.matrixList
+                            ):
                                 raise Exception()
 
                             Utility.printFormat()
                             Utility.printFormat("Deleted Matrix", textFill="-")
                             Utility.printFormat()
-                            print(Program.matrixList[listOption - 1])
+                            print(Program.matrixList[matrixOption - 1])
 
-                            Program.matrixList.pop(listOption - 1)
+                            Program.matrixList.pop(matrixOption - 1)
 
                         except:
                             Utility.printFormat()
@@ -226,15 +228,17 @@ class Program:
                             Utility.printFormat("Choose", textFill="-")
                             Utility.printFormat()
 
-                            listOption = int(input("List: "))
-                            if listOption <= 0 or listOption > len(Program.matrixList):
+                            matrixOption = int(input("Matrix: "))
+                            if matrixOption <= 0 or matrixOption > len(
+                                Program.matrixList
+                            ):
                                 raise Exception()
 
                             Utility.printFormat()
                             Utility.printFormat("Selected Matrix", textFill="-")
                             Utility.printFormat()
 
-                            selectedMatrix = Program.matrixList[listOption - 1]
+                            selectedMatrix = Program.matrixList[matrixOption - 1]
                             print(selectedMatrix)
 
                             Utility.printFormat()
@@ -265,7 +269,7 @@ class Program:
                             Utility.printFormat("Change Element", textFill="-")
                             Utility.printFormat()
 
-                            Program.matrixList[listOption - 1][rowPosition - 1][
+                            Program.matrixList[matrixOption - 1][rowPosition - 1][
                                 columnPosition - 1
                             ] = int(input("Change: "))
 
@@ -273,19 +277,19 @@ class Program:
                             Utility.printFormat("Updated Matrix", textFill="-")
                             Utility.printFormat()
 
-                            print(Program.matrixList[listOption - 1])
+                            print(Program.matrixList[matrixOption - 1])
 
                         except:
                             Utility.printFormat()
                             Utility.printFormat("Input Not Valid", textFill="-")
 
-                        Utility.printFormat()
-                        Program.back()
+                    Utility.printFormat()
+                    Program.back()
 
-                        sleep(0.50)
-                        while True:
-                            if is_pressed("right"):
-                                break
+                    sleep(0.50)
+                    while True:
+                        if is_pressed("right"):
+                            break
 
                 elif Dependency.menuOption == 5:
                     Dependency.programIsRunning = False
