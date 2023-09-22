@@ -29,13 +29,28 @@ class Utility:
 
 class Program:
     matrixList = [
+        [[1]],
+        [[1, 2]],
+        [[1], [2]],
         [[1, 2], [3, 4]],
-        [[1, 2], [5, 6]],
-        [[5, 6], [1, 2]],
+        [[1, 3], [2, 4]],
+        [[1, 2, 3]],
+        [[1], [2], [3]],
         [[1, 2, 3], [4, 5, 6]],
+        [[1, 4], [2, 5], [3, 6]],
+        [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+        [[1, 4, 7], [2, 5, 8], [3, 6, 9]],
+        [[1, 2, 3, 4]],
+        [[1], [2], [3], [4]],
+        [[1, 2, 3, 4], [5, 6, 7, 8]],
+        [[1, 5], [2, 6], [3, 7], [4, 8]],
+        [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]],
+        [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]],
+        [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]],
+        [[1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15], [4, 8, 12, 16]],
     ]
 
-    def refresh(customMenuList=None, guide=True):
+    def refresh(customMenuList: None or list = None, guide: bool = True) -> None:
         Utility.clear()
 
         Utility.printFormat()
@@ -65,11 +80,11 @@ class Program:
             Utility.printFormat("(↑ = up)---(↓ = down)---(→ = interact)", textFill="-")
             Utility.printFormat()
 
-    def back():
+    def back() -> None:
         Utility.printFormat("(→ = back)", textFill="-")
         Utility.printFormat()
 
-    def option():
+    def option() -> None:
         sleep(0.10)
         while True:
             if is_pressed("up"):
