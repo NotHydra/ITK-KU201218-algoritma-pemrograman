@@ -1,17 +1,13 @@
-from random import randint
-
 numbers = []
 i = 1
 
 while i <= 100:
-    numbers.append(randint(1, 151))
+    numbers.append(int(input()))
 
     i = i + 1
 
-print(numbers, len(numbers))
-print()
-
-while True:
+isRunning = True
+while isRunning:
     switchCount = 0
     i = 2
 
@@ -28,6 +24,6 @@ while True:
         i += 1
 
     if switchCount == 0:
-        break
+        isRunning = False
 
-print(numbers, len(numbers))
+print(numbers)

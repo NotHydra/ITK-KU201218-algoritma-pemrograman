@@ -1,9 +1,7 @@
-from random import randint
-
 numbers = []
 i = 1
 while i <= 100:
-    numbers.append(randint(1, 151))
+    numbers.append(int(input()))
 
     if i == 1:
         minValue = numbers[i - 1]
@@ -14,4 +12,4 @@ while i <= 100:
 
     i = i + 1
 
-print(numbers, len(numbers), minValue)
+print(minValue)
