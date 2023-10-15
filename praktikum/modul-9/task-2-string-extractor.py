@@ -1,5 +1,7 @@
 from os import system
 
+from string import ascii_letters, digits, punctuation
+
 
 class Dependency:
     textLength = 50
@@ -15,32 +17,38 @@ class Utility:
 
 
 class Program:
-    def factorial(number: int) -> int:
-        if number > 1:
-            return number * Program.factorial(number - 1)
+    def extract(text: str) -> list[str]:
+        letterArray = []
+        digitArray = []
+        symbolArray = []
+        for char in text:
+            if char in ascii_letters:
+                letterArray.append(char)
 
-        else:
-            return number
+            elif char in digits:
+                digitArray.append(char)
+
+            elif char in punctuation:
+                symbolArray.append(char)
+
+        return ["".join(letterArray), "".join(digitArray), "".join(symbolArray)]
 
     def main() -> None:
         programIsRunning = True
         while programIsRunning:
             try:
                 Utility.printFormat()
-                Utility.printFormat("Factorial", textFill="-")
+                Utility.printFormat("String Extractor", textFill="-")
                 Utility.printFormat()
 
-                number = int(input("Enter A Number: "))
+                text = input("Enter A Text: ")
 
                 Utility.printFormat()
                 Utility.printFormat("Result", textFill="-")
                 Utility.printFormat()
 
-                print(number, end="")
-                for i in range(number - 1, 0, -1):
-                    print(f" x {i}", end="")
-
-                print(f" = {Program.factorial(number)}")
+                for extractedIndex, extractedObject in enumerate(Program.extract(text)):
+                    print(f"{extractedIndex  + 1}. {extractedObject}")
 
                 Utility.printFormat()
 
