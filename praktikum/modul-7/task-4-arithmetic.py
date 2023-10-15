@@ -18,7 +18,7 @@ class Program:
     programIsRunning = True
     optionIsValid = False
 
-    def arithmethic(textArray: list[str]):
+    def arithmetic(textArray: list[str]):
         if textArray[0] == "WHAT" and textArray[1] == "IS" and textArray[-1] == "?":
             if (
                 textArray[3] in ["ADDED", "SUBTRACTED", "MULTIPLIED", "DIVIDED"]
@@ -57,10 +57,10 @@ class Program:
         while Program.programIsRunning:
             try:
                 Utility.printFormat()
-                Utility.printFormat("Aritmethic", textFill="-")
+                Utility.printFormat("Arithmetic", textFill="-")
                 Utility.printFormat()
 
-                result = Program.arithmethic(
+                result = Program.arithmetic(
                     input("Enter An Arithmethic Text: ").upper().split(" ")
                 )
 
