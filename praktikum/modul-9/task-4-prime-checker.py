@@ -75,3 +75,5 @@ class Program:
                     Utility.printFormat()
 
         input()
+
+Program.main()
