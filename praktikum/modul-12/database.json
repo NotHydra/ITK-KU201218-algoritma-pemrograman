@@ -1,0 +1,13 @@
+{
+    "increment": {
+        "item": 3
+    },
+    "item": [
+        {
+            "id": 3,
+            "name": "Pencil",
+            "price": "5000",
+            "stock": "3"
+        }
+    ]
+}
