@@ -276,7 +276,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=self.equalEvent,
         )
         equalButton.grid(
             row=5, column=1, columnspan=2, padx=(0, 8), pady=(0, 8), sticky="nsew"
@@ -307,6 +307,13 @@ class App(ctk.CTk):
 
             elif currentResultValue[-1] in ["+", "-", "x", ":"]:
                 self.resultValue.set(f"{currentResultValue[0:-1]}{operator}")
+
+    def equalEvent(self) -> None:
+        currentResultValue = self.resultValue.get()
+        currentResultValue = currentResultValue.replace("x", "*")
+        currentResultValue = currentResultValue.replace(":", "/")
+
+        self.resultValue.set(str(eval(currentResultValue)))
 
 
 app = App()
