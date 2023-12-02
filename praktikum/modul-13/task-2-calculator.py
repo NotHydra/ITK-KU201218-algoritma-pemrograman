@@ -323,10 +323,10 @@ class App(ctk.CTk):
 
         currentResultValue = self.resultValue.get()
         if currentResultValue != "":
-            if currentResultValue[-3:-1] not in [" +", " -", " x", " :", "od"]:
+            if currentResultValue[-3:-1] not in [" +", " -", " x", " :", "od", " ^"]:
                 self.resultValue.set(f"{currentResultValue} {operator} ")
 
-            elif currentResultValue[-3:-1] in [" +", " -", " x", " :"]:
+            elif currentResultValue[-3:-1] in [" +", " -", " x", " :", " ^"]:
                 self.resultValue.set(f"{currentResultValue[0:-3]} {operator} ")
 
             elif currentResultValue[-4:-1] in ["mod"]:
