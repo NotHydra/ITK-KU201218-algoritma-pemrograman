@@ -90,7 +90,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=self.deleteEvent,
         )
         deleteButton.grid(row=1, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -318,6 +318,9 @@ class App(ctk.CTk):
 
         except:
             pass
+
+    def deleteEvent(self) -> None:
+        self.resultValue.set(self.resultValue.get()[0:-1])
 
 
 app = App()
