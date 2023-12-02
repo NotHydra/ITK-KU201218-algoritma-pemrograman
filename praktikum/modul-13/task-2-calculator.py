@@ -268,6 +268,19 @@ class App(ctk.CTk):
         )
         zeroButton.grid(row=5, column=0, padx=8, pady=(0, 8), sticky="nsew")
 
+        dotButton = ctk.CTkButton(
+            master=self,
+            text=".",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            command=self.dotEvent,
+        )
+        dotButton.grid(row=5, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
         equalButton = ctk.CTkButton(
             master=self,
             text="=",
@@ -279,9 +292,7 @@ class App(ctk.CTk):
             corner_radius=8,
             command=self.equalEvent,
         )
-        equalButton.grid(
-            row=5, column=1, columnspan=2, padx=(0, 8), pady=(0, 8), sticky="nsew"
-        )
+        equalButton.grid(row=5, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
         addButton = ctk.CTkButton(
             master=self,
@@ -309,6 +320,23 @@ class App(ctk.CTk):
             elif currentResultValue[-1] in ["+", "-", "x", ":"]:
                 self.resultValue.set(f"{currentResultValue[0:-1]}{operator}")
 
+    def dotEvent(self) -> None:
+        currentResultValue = self.resultValue.get()
+
+        if currentResultValue != "" and currentResultValue[-1] in [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+        ]:
+            self.resultValue.set(f"{currentResultValue}.")
+
     def equalEvent(self) -> None:
         try:
             currentResultValue = self.resultValue.get()
@@ -318,7 +346,7 @@ class App(ctk.CTk):
             self.resultValue.set(str(eval(currentResultValue)))
 
         except:
-            pass
+            self.resultValue.set("Error")
 
     def deleteEvent(self) -> None:
         self.resultValue.set(self.resultValue.get()[0:-1])
