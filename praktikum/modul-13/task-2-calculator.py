@@ -67,7 +67,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.operatorEvent("^"),
         )
         powerButton.grid(row=1, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -323,11 +323,14 @@ class App(ctk.CTk):
 
         currentResultValue = self.resultValue.get()
         if currentResultValue != "":
-            if currentResultValue[-1] not in ["+", "-", "x", ":"]:
+            if currentResultValue[-3:-1] not in [" +", " -", " x", " :", "od"]:
                 self.resultValue.set(f"{currentResultValue} {operator} ")
 
-            elif currentResultValue[-1] in ["+", "-", "x", ":"]:
-                self.resultValue.set(f"{currentResultValue[0:-1]} {operator} ")
+            elif currentResultValue[-3:-1] in [" +", " -", " x", " :"]:
+                self.resultValue.set(f"{currentResultValue[0:-3]} {operator} ")
+
+            elif currentResultValue[-4:-1] in ["mod"]:
+                self.resultValue.set(f"{currentResultValue[0:-5]} {operator} ")
 
     def dotEvent(self) -> None:
         self.checkValid()
@@ -351,6 +354,7 @@ class App(ctk.CTk):
         try:
             currentResultValue = self.resultValue.get()
             currentResultValue = currentResultValue.replace("mod", "%")
+            currentResultValue = currentResultValue.replace("^", "**")
             currentResultValue = currentResultValue.replace("x", "*")
             currentResultValue = currentResultValue.replace(":", "/")
 
