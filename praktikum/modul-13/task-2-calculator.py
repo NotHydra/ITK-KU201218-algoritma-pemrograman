@@ -12,6 +12,8 @@ class Dependency:
 
 
 class App(ctk.CTk):
+    isValid = True
+
     def __init__(self) -> None:
         super().__init__()
 
@@ -307,12 +309,19 @@ class App(ctk.CTk):
         )
         addButton.grid(row=5, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
+    def checkValid(self) -> None:
+        if not self.isValid:
+            self.clearEvent()
+
     def numberEvent(self, number) -> None:
+        self.checkValid()
+
         self.resultValue.set(f"{self.resultValue.get()}{number}")
 
     def operatorEvent(self, operator) -> None:
-        currentResultValue = self.resultValue.get()
+        self.checkValid()
 
+        currentResultValue = self.resultValue.get()
         if currentResultValue != "":
             if currentResultValue[-1] not in ["+", "-", "x", ":"]:
                 self.resultValue.set(f"{currentResultValue}{operator}")
@@ -321,8 +330,9 @@ class App(ctk.CTk):
                 self.resultValue.set(f"{currentResultValue[0:-1]}{operator}")
 
     def dotEvent(self) -> None:
-        currentResultValue = self.resultValue.get()
+        self.checkValid()
 
+        currentResultValue = self.resultValue.get()
         if currentResultValue != "" and currentResultValue[-1] in [
             "0",
             "1",
@@ -346,9 +356,12 @@ class App(ctk.CTk):
             self.resultValue.set(str(eval(currentResultValue)))
 
         except:
+            self.isValid = False
             self.resultValue.set("Error")
 
     def deleteEvent(self) -> None:
+        self.checkValid()
+
         self.resultValue.set(self.resultValue.get()[0:-1])
 
     def clearEvent(self) -> None:
