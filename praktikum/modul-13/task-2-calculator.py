@@ -34,7 +34,7 @@ class App(ctk.CTk):
             master=self,
             textvariable=self.resultValue,
             text_color=Dependency.colorPalette["white"],
-            font=ctk.CTkFont(family="Arial", size=32, weight="bold"),
+            font=ctk.CTkFont(family="Arial", size=24, weight="bold"),
             fg_color=Dependency.colorPalette["blue-light"],
             corner_radius=8,
             border_width=0,
@@ -143,7 +143,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.operatorEvent(":"),
         )
         divideButton.grid(row=2, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -196,7 +196,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.operatorEvent("x"),
         )
         multiplyButton.grid(row=3, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -249,7 +249,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.operatorEvent("-"),
         )
         subtractButton.grid(row=4, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -291,12 +291,22 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.operatorEvent("+"),
         )
         addButton.grid(row=5, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
     def numberEvent(self, number) -> None:
         self.resultValue.set(f"{self.resultValue.get()}{number}")
+
+    def operatorEvent(self, operator) -> None:
+        currentResultValue = self.resultValue.get()
+
+        if currentResultValue != "":
+            if currentResultValue[-1] not in ["+", "-", "x", ":"]:
+                self.resultValue.set(f"{currentResultValue}{operator}")
+
+            elif currentResultValue[-1] in ["+", "-", "x", ":"]:
+                self.resultValue.set(f"{currentResultValue[0:-1]}{operator}")
 
 
 app = App()
