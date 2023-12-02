@@ -367,7 +367,11 @@ class App(ctk.CTk):
     def deleteEvent(self) -> None:
         self.checkValid()
 
-        self.resultValue.set(self.resultValue.get()[0:-1])
+        if self.resultValue.get()[-1] == " ":
+            self.resultValue.set(self.resultValue.get()[0:-3])
+
+        else:
+            self.resultValue.set(self.resultValue.get()[0:-1])
 
     def clearEvent(self) -> None:
         self.resultValue.set("")
