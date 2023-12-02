@@ -1,0 +1,297 @@
+import customtkinter as ctk
+
+
+class Dependency:
+    colorPalette = {
+        "blue-darker": "#081d3a",
+        "blue-dark": "#0A2647",
+        "blue-light": "#144272",
+        "white-darker": "#CCCCCC",
+        "white": "#FFFFFF",
+    }
+
+
+class App(ctk.CTk):
+    def __init__(self) -> None:
+        super().__init__()
+
+        self.title("Calculator")
+
+        self.geometry("400x600")
+
+        self.configure(fg_color=Dependency.colorPalette["blue-darker"])
+
+        self.main()
+
+    def main(self) -> None:
+        self.rowconfigure(0, weight=2)
+        self.rowconfigure([1, 2, 3, 4, 5], weight=1)
+        self.columnconfigure([0, 1, 2, 3], weight=1)
+
+        resultLabel = ctk.CTkLabel(
+            master=self,
+            text="",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=16, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            corner_radius=8,
+        )
+        resultLabel.grid(row=0, column=0, columnspan=4, padx=8, pady=8, sticky="nsew")
+
+        # First Row
+        modButton = ctk.CTkButton(
+            master=self,
+            text="mod",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        modButton.grid(row=1, column=0, padx=8, pady=(0, 8), sticky="nsew")
+
+        powerButton = ctk.CTkButton(
+            master=self,
+            text="^",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        powerButton.grid(row=1, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        clearButton = ctk.CTkButton(
+            master=self,
+            text="C",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        clearButton.grid(row=1, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        deleteButton = ctk.CTkButton(
+            master=self,
+            text="<",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        deleteButton.grid(row=1, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        # Second Row
+        sevenButton = ctk.CTkButton(
+            master=self,
+            text="7",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        sevenButton.grid(row=2, column=0, padx=8, pady=(0, 8), sticky="nsew")
+
+        eightButton = ctk.CTkButton(
+            master=self,
+            text="8",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        eightButton.grid(row=2, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        nineButton = ctk.CTkButton(
+            master=self,
+            text="9",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        nineButton.grid(row=2, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        divideButton = ctk.CTkButton(
+            master=self,
+            text=":",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        divideButton.grid(row=2, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        # Third Row
+        fourButton = ctk.CTkButton(
+            master=self,
+            text="4",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        fourButton.grid(row=3, column=0, padx=8, pady=(0, 8), sticky="nsew")
+
+        fiveButton = ctk.CTkButton(
+            master=self,
+            text="5",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        fiveButton.grid(row=3, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        sixButton = ctk.CTkButton(
+            master=self,
+            text="6",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        sixButton.grid(row=3, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        multiplyButton = ctk.CTkButton(
+            master=self,
+            text="x",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        multiplyButton.grid(row=3, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        # Fourth Row
+        oneButton = ctk.CTkButton(
+            master=self,
+            text="1",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        oneButton.grid(row=4, column=0, padx=8, pady=(0, 8), sticky="nsew")
+
+        twoButton = ctk.CTkButton(
+            master=self,
+            text="2",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        twoButton.grid(row=4, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        threeButton = ctk.CTkButton(
+            master=self,
+            text="3",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        threeButton.grid(row=4, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        subtractButton = ctk.CTkButton(
+            master=self,
+            text="-",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        subtractButton.grid(row=4, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+        # Fifth Row
+        zeroButton = ctk.CTkButton(
+            master=self,
+            text="0",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        zeroButton.grid(row=5, column=0, padx=8, pady=(0, 8), sticky="nsew")
+
+        equalButton = ctk.CTkButton(
+            master=self,
+            text="=",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        equalButton.grid(
+            row=5, column=1, columnspan=2, padx=(0, 8), pady=(0, 8), sticky="nsew"
+        )
+
+        addButton = ctk.CTkButton(
+            master=self,
+            text="+",
+            text_color=Dependency.colorPalette["white"],
+            font=ctk.CTkFont(family="Arial", size=12, weight="bold"),
+            fg_color=Dependency.colorPalette["blue-light"],
+            hover_color=Dependency.colorPalette["blue-dark"],
+            cursor="hand2",
+            corner_radius=8,
+            # command=self.removeEvent,
+        )
+        addButton.grid(row=5, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+
+app = App()
+app.mainloop()
