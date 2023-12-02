@@ -38,6 +38,7 @@ class App(ctk.CTk):
             fg_color=Dependency.colorPalette["blue-light"],
             corner_radius=8,
             border_width=0,
+            state="readonly",
         )
         resultEntry.grid(row=0, column=0, columnspan=4, padx=8, pady=8, sticky="nsew")
 
@@ -77,7 +78,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=self.clearEvent,
         )
         clearButton.grid(row=1, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -321,6 +322,9 @@ class App(ctk.CTk):
 
     def deleteEvent(self) -> None:
         self.resultValue.set(self.resultValue.get()[0:-1])
+
+    def clearEvent(self) -> None:
+        self.resultValue.set("")
 
 
 app = App()
