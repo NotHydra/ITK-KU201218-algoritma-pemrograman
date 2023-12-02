@@ -54,7 +54,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.operatorEvent("mod"),
         )
         modButton.grid(row=1, column=0, padx=8, pady=(0, 8), sticky="nsew")
 
@@ -324,10 +324,10 @@ class App(ctk.CTk):
         currentResultValue = self.resultValue.get()
         if currentResultValue != "":
             if currentResultValue[-1] not in ["+", "-", "x", ":"]:
-                self.resultValue.set(f"{currentResultValue}{operator}")
+                self.resultValue.set(f"{currentResultValue} {operator} ")
 
             elif currentResultValue[-1] in ["+", "-", "x", ":"]:
-                self.resultValue.set(f"{currentResultValue[0:-1]}{operator}")
+                self.resultValue.set(f"{currentResultValue[0:-1]} {operator} ")
 
     def dotEvent(self) -> None:
         self.checkValid()
@@ -350,6 +350,7 @@ class App(ctk.CTk):
     def equalEvent(self) -> None:
         try:
             currentResultValue = self.resultValue.get()
+            currentResultValue = currentResultValue.replace("mod", "%")
             currentResultValue = currentResultValue.replace("x", "*")
             currentResultValue = currentResultValue.replace(":", "/")
 
