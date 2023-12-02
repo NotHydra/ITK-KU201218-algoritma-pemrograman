@@ -28,15 +28,18 @@ class App(ctk.CTk):
         self.rowconfigure([1, 2, 3, 4, 5], weight=1)
         self.columnconfigure([0, 1, 2, 3], weight=1)
 
-        resultLabel = ctk.CTkLabel(
+        self.resultValue = ctk.StringVar()
+        self.resultValue.set("")
+        resultEntry = ctk.CTkEntry(
             master=self,
-            text="",
+            textvariable=self.resultValue,
             text_color=Dependency.colorPalette["white"],
-            font=ctk.CTkFont(family="Arial", size=16, weight="bold"),
+            font=ctk.CTkFont(family="Arial", size=32, weight="bold"),
             fg_color=Dependency.colorPalette["blue-light"],
             corner_radius=8,
+            border_width=0,
         )
-        resultLabel.grid(row=0, column=0, columnspan=4, padx=8, pady=8, sticky="nsew")
+        resultEntry.grid(row=0, column=0, columnspan=4, padx=8, pady=8, sticky="nsew")
 
         # First Row
         modButton = ctk.CTkButton(
@@ -101,7 +104,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(7),
         )
         sevenButton.grid(row=2, column=0, padx=8, pady=(0, 8), sticky="nsew")
 
@@ -114,7 +117,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(8),
         )
         eightButton.grid(row=2, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -127,7 +130,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(9),
         )
         nineButton.grid(row=2, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -154,7 +157,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(4),
         )
         fourButton.grid(row=3, column=0, padx=8, pady=(0, 8), sticky="nsew")
 
@@ -167,7 +170,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(5),
         )
         fiveButton.grid(row=3, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -180,7 +183,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(6),
         )
         sixButton.grid(row=3, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -207,7 +210,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(1),
         )
         oneButton.grid(row=4, column=0, padx=8, pady=(0, 8), sticky="nsew")
 
@@ -220,7 +223,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(2),
         )
         twoButton.grid(row=4, column=1, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -233,7 +236,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(3),
         )
         threeButton.grid(row=4, column=2, padx=(0, 8), pady=(0, 8), sticky="nsew")
 
@@ -260,7 +263,7 @@ class App(ctk.CTk):
             hover_color=Dependency.colorPalette["blue-dark"],
             cursor="hand2",
             corner_radius=8,
-            # command=self.removeEvent,
+            command=lambda: self.numberEvent(0),
         )
         zeroButton.grid(row=5, column=0, padx=8, pady=(0, 8), sticky="nsew")
 
@@ -291,6 +294,9 @@ class App(ctk.CTk):
             # command=self.removeEvent,
         )
         addButton.grid(row=5, column=3, padx=(0, 8), pady=(0, 8), sticky="nsew")
+
+    def numberEvent(self, number) -> None:
+        self.resultValue.set(f"{self.resultValue.get()}{number}")
 
 
 app = App()
