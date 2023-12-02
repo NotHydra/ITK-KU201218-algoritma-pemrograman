@@ -309,11 +309,15 @@ class App(ctk.CTk):
                 self.resultValue.set(f"{currentResultValue[0:-1]}{operator}")
 
     def equalEvent(self) -> None:
-        currentResultValue = self.resultValue.get()
-        currentResultValue = currentResultValue.replace("x", "*")
-        currentResultValue = currentResultValue.replace(":", "/")
+        try:
+            currentResultValue = self.resultValue.get()
+            currentResultValue = currentResultValue.replace("x", "*")
+            currentResultValue = currentResultValue.replace(":", "/")
 
-        self.resultValue.set(str(eval(currentResultValue)))
+            self.resultValue.set(str(eval(currentResultValue)))
+
+        except:
+            pass
 
 
 app = App()
