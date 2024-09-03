@@ -1,0 +1,1 @@
+print("Nama Orang Misalnya") #Isi dari Value dengan Data Type String dapat kita ubah sesuai dengan kebutuhan
