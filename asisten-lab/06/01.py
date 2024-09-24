@@ -1,5 +1,5 @@
 # => Kita dapat menyimpan sekumpulan Value dengan menggunakan List
-# => List dapat menyimpan berbagai macam tipe datac
+# => List dapat menyimpan berbagai macam Data Type
 
 # => List yang menyimpan Value dengan Data Type String
 hewan = ["Kucing", "Sapi", "Ayam"]
