@@ -1,0 +1,6 @@
+file = open("asisten-lab/11/02.txt", "w")
+file.write("Hello, World!\n")
+file.write("Icikiwir!\n")
+file.write("Alamak!\n")
+file.write("Kasihan!\n")
+file.close()

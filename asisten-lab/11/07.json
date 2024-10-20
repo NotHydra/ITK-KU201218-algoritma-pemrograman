@@ -1,0 +1,30 @@
+{
+	"mahasiswa": [
+		{
+			"nama": "Asep",
+			"programStudi": "Matematika"
+		},
+		{
+			"nama": "Budi",
+			"programStudi": "Fisika"
+		},
+		{
+			"nama": "Cici",
+			"programStudi": "Kimia"
+		}
+	],
+	"mataKuliah": [
+		{
+			"nama": "Kalkulus",
+			"sks": 3
+		},
+		{
+			"nama": "Fisika Dasar",
+			"sks": 3
+		},
+		{
+			"nama": "Pancasila",
+			"sks": 2
+		}
+	]
+}
