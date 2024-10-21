@@ -1,0 +1,20 @@
+{
+    "barang": [
+        {
+            "nama": "Pulpen",
+            "stok": 12
+        },
+        {
+            "nama": "Icikiwir",
+            "stok": 100
+        },
+        {
+            "nama": "Coconut",
+            "stok": 50
+        },
+        {
+            "nama": "Pulpen",
+            "stok": 0
+        }
+    ]
+}
